@@ -58,14 +58,66 @@ export interface User {
 export interface Profile {
   userId: string;
   departmentId?: string | null;
+  departmentName?: string | null;
   studentId?: string | null;
   fullName: string;
   username: string;
   avatarUrl?: string | null;
   bio?: string | null;
   academicYear?: number | null;
-  createdAt: string;
-  updatedAt: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface AuthUser {
+  userId: string;
+  universityEmail: string;
+  email?: string; // Fallback normalization if backend returns 'email' on /auth/login
+  role: UserRole;
+  emailVerified?: boolean;
+  isVerified: boolean;
+  profile: {
+    fullName: string;
+    studentId?: string;
+    username: string;
+    avatarUrl?: string | null;
+    departmentId?: string | null;
+    departmentName?: string | null;
+    bio?: string | null;
+  };
+}
+
+export interface LoginRequest {
+  universityEmail: string;
+  password: string;
+}
+
+export interface LoginResponseData {
+  accessToken: string;
+  refreshToken: string;
+  expiresIn: number;
+  user: AuthUser;
+}
+
+export interface RegisterRequest {
+  universityEmail: string;
+  password: string;
+  fullName: string;
+  studentId: string;
+  departmentId: string;
+}
+
+export interface RegisterResponseData {
+  userId: string;
+  universityEmail: string;
+  role: UserRole;
+  emailVerified: boolean;
+  isVerified: boolean;
+  profile: {
+    fullName: string;
+    studentId: string;
+    username: string;
+  };
 }
 
 export interface Department {
@@ -156,6 +208,7 @@ export interface Club {
   status: ClubStatus;
   membersCount?: number;
   isMember?: boolean;
+  isFollowing?: boolean;
   membershipStatus?: 'NONE' | 'PENDING' | 'ACTIVE';
   createdBy?: string;
   createdAt?: string;
@@ -200,6 +253,7 @@ export interface PostAuthor {
   username: string;
   avatarUrl?: string | null;
   isVerified: boolean;
+  departmentName?: string;
 }
 
 export interface Post {
@@ -215,7 +269,7 @@ export interface Post {
     commentsCount: number;
     hasLiked: boolean;
   };
-  moderationStatus: ModerationStatus;
+  moderationStatus?: ModerationStatus;
   createdAt: string;
   updatedAt?: string;
 }
@@ -231,8 +285,8 @@ export interface PostComment {
 
 export interface CampusEvent {
   eventId: string;
-  clubId: string;
-  clubName: string;
+  clubId?: string;
+  clubName?: string;
   clubLogoUrl?: string | null;
   club: {
     clubId: string;
@@ -328,4 +382,3 @@ export interface ApiErrorResponse {
     details?: ApiErrorDetail[];
   };
 }
-
