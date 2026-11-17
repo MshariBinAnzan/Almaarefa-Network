@@ -105,7 +105,7 @@ export function AppShell({ children, activeTab = 'feed', onSelectSection }: AppS
           <div className="flex items-center gap-2.5 shrink-0">
             <ThemeSwitcher />
             {mockActive && (
-              <div className="hidden lg:flex items-center gap-1.5 bg-slate-100 px-2.5 py-1 rounded-xl border border-slate-200 whitespace-nowrap">
+            <div className="hidden lg:flex items-center gap-1.5 bg-slate-100 px-2.5 py-1 rounded-xl border border-slate-200 whitespace-nowrap">
                 <Sparkles className="w-3.5 h-3.5 text-brand-600 shrink-0" aria-hidden="true" />
                 <label htmlFor="persona-switcher" className="text-[11px] font-medium text-slate-500">
                   Role:
@@ -122,10 +122,10 @@ export function AppShell({ children, activeTab = 'feed', onSelectSection }: AppS
                   }
                   className="bg-transparent text-xs font-semibold text-slate-800 focus:outline-none cursor-pointer"
                 >
-                  <option value="studentVerified">Verified Student</option>
-                  <option value="studentUnverified">Unverified Student</option>
-                  <option value="clubLeader">Club Leader</option>
-                  <option value="admin">Admin</option>
+                  <option value="studentVerified" style={{ color: 'black' }}>Verified Student</option>
+                  <option value="studentUnverified" style={{ color: 'black' }}>Unverified Student</option>
+                  <option value="clubLeader" style={{ color: 'black' }}>Club Leader</option>
+                  <option value="admin" style={{ color: 'black' }}>Admin</option>
                 </select>
               </div>
             )}
